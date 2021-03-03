@@ -1,0 +1,159 @@
+廖雪峰的官方网站
+ 编程
+ 读书
+ Java教程
+ Python教程
+ JavaScript教程
+ 区块链教程
+ SQL教程
+ Git教程
+ 问答
+ 登录
+  
+目录
+Git教程
+Git简介
+安装Git
+创建版本库
+时光机穿梭
+版本回退
+工作区和暂存区
+管理修改
+撤销修改
+删除文件
+远程仓库
+分支管理
+标签管理
+使用GitHub
+使用Gitee
+自定义Git
+使用SourceTree
+期末总结
+关于作者
+关注公众号不定期领红包：
+
+
+
+关注微博获取实时动态：
+
+
+ 
+
+  
+
+ 
+工作区和暂存区
+阅读: 261081941
+Git和其他版本控制系统如SVN的一个不同之处就是有暂存区的概念。
+
+先来看名词解释。
+
+工作区（Working Directory）
+就是你在电脑里能看到的目录，比如我的learngit文件夹就是一个工作区：
+
+working-dir
+
+版本库（Repository）
+工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。
+
+Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD。
+
+git-repo
+
+分支和HEAD的概念我们以后再讲。
+
+前面讲了我们把文件往Git版本库里添加的时候，是分两步执行的：
+
+第一步是用git add把文件添加进去，实际上就是把文件修改添加到暂存区；
+
+第二步是用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支。
+
+因为我们创建Git版本库时，Git自动为我们创建了唯一一个master分支，所以，现在，git commit就是往master分支上提交更改。
+
+你可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。
+
+俗话说，实践出真知。现在，我们再练习一遍，先对readme.txt做个修改，比如加上一行内容：
+
+Git is a distributed version control system.
+Git is free software distributed under the GPL.
+Git has a mutable index called stage.
+然后，在工作区新增一个LICENSE文本文件（内容随便写）。
+
+先用git status查看一下状态：
+
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   readme.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	LICENSE
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Git非常清楚地告诉我们，readme.txt被修改了，而LICENSE还从来没有被添加过，所以它的状态是Untracked。
+
+现在，使用两次命令git add，把readme.txt和LICENSE都添加后，用git status再查看一下：
+
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   LICENSE
+	modified:   readme.txt
+现在，暂存区的状态就变成这样了：
+
+git-stage
+
+所以，git add命令实际上就是把要提交的所有修改放到暂存区（Stage），然后，执行git commit就可以一次性把暂存区的所有修改提交到分支。
+
+$ git commit -m "understand how stage works"
+[master e43a48b] understand how stage works
+ 2 files changed, 2 insertions(+)
+ create mode 100644 LICENSE
+一旦提交后，如果你又没有对工作区做任何修改，那么工作区就是“干净”的：
+
+$ git status
+On branch master
+nothing to commit, working tree clean
+现在版本库变成了这样，暂存区就没有任何内容了：
+
+git-stage-after-commit
+
+
+
+小结
+暂存区是Git非常重要的概念，弄明白了暂存区，就弄明白了Git的很多操作到底干了什么。
+
+没弄明白暂存区是怎么回事的童鞋，请向上滚动页面，再看一次。
+
+读后有收获可以支付宝请作者喝咖啡：
+
+
+还可以分享给朋友：
+ 分享到微博
+
+ 上一页下一页 
+ 
+
+  
+
+ 
+评论
+发表评论
+ 登录后发表评论
+
+廖雪峰的官方网站 ©Copyright 2019-2021
+Powered by iTranswarp
+本网站运行在阿里云上并使用阿里云CDN加速。
+
+  
+意见反馈
+使用许可
+
+本网站内容全部为原创，谢绝转载。友情链接: 中华诗词 - 阿里云 - SICP - 4clojure
